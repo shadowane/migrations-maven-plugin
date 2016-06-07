@@ -41,6 +41,11 @@ public final class NewCommandMojo extends AbstractCommandMojo<NewCommand> {
   private String template;
 
   /**
+   * New file based on file-template.
+   */
+  @Parameter(property = "migration.filetemplate")
+  private String fileTemplate;
+  /**
    * Sequential number for script prefix. (type 000 to generate 001_create_changelog)
    */
   @Parameter(property = "migration.idpattern")
@@ -55,6 +60,9 @@ public final class NewCommandMojo extends AbstractCommandMojo<NewCommand> {
   protected NewCommand createCommandClass(SelectedOptions options) {
     if (template != null) {
       options.setTemplate(template);
+    }
+    if (fileTemplate != null) {
+      options.setFileTemplate(fileTemplate);
     }
     if (idPattern != null) {
       options.setIdPattern(idPattern);
